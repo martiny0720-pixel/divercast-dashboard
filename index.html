@@ -1698,8 +1698,9 @@ function saveToLocalStorage() {
 
 // ===== Gist 동기화 =====
 async function loadFromGist() {
-  const gistId = localStorage.getItem('gist_id');
-  const githubToken = localStorage.getItem('github_token');
+  // Gist 설정 (하드코딩 - 모든 기기에서 자동 동기화)
+  const gistId = localStorage.getItem('gist_id') || 'b70a021808f717c0d5ae0ed3c38554b4';
+  const githubToken = localStorage.getItem('github_token') || 'ghp_7kzP8wGXOVwYmZ9n4D3RZjL2QxK5V4WW';
   
   if (!gistId || !githubToken) {
     console.log('ℹ️ Gist 설정 없음 - localStorage만 사용');
@@ -1761,8 +1762,9 @@ async function loadFromGist() {
 }
 
 async function saveToGist() {
-  const gistId = localStorage.getItem('gist_id');
-  const githubToken = localStorage.getItem('github_token');
+  // Gist 설정 (하드코딩 - 모든 기기에서 자동 동기화)
+  const gistId = localStorage.getItem('gist_id') || 'b70a021808f717c0d5ae0ed3c38554b4';
+  const githubToken = localStorage.getItem('github_token') || 'ghp_7k...V4WW';
   
   if (!gistId || !githubToken) {
     console.log('ℹ️ Gist 설정 없음 - localStorage만 저장');
