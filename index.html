@@ -1840,11 +1840,14 @@ async function loadFromTelegram() {
     const telegramPostsFile = gistData.files['telegram_posts.json'];
     
     if (!telegramPostsFile) {
-      alert('ℹ️ 텔레그램 작업이 없습니다.\n\n먼저 텔레그램에서 "대기열 N건 처리해줘" 명령을 실행하세요.');
+      alert('ℹ️ 텔레그램 작업이 없습니다.\\n\\n먼저 텔레그램에서 "대기열 N건 처리해줘" 명령을 실행하세요.');
       return;
     }
     
-    const telegramPosts = JSON.parse(telegramPostsFile.content);
+    // raw_url로 실제 내용 가져오기 (큰 파일은 content가 비어있음)
+    const rawResponse = await fetch(telegramPostsFile.raw_url);
+    const rawText = await rawResponse.text();
+    const telegramPosts = JSON.parse(rawText);
     
     if (!Array.isArray(telegramPosts) || telegramPosts.length === 0) {
       alert('ℹ️ 텔레그램 작업이 비어있습니다.');
